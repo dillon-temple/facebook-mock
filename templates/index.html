@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet" />
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    *{
+        color:white;
+    }
+    .error{
+        color:red;
+    }
+    .info{
+        color:white;
+        font-size:10pt;
+    }
+    h1{
+        font-size:26pt;
+        background-color:lightgray;
+        text-align:center;
+        margin-bottom:20px;
+        color:black;
+        border:2px solid black;
+        border-radius:10px;
+    }
+    h2{
+        font-size:23pt;
+        text-decoration: underline;
+    }
+    h3{
+        color:red;
+        font-size:12pt;
+    }
+    #wrapper{
+        background-color:#394D5A;
+        height:700px;
+        width:850px;
+        padding:10px;
+    }
+    #register{
+        /* background-color:aquamarine; */
+        height:550px;
+        width:350px;
+        display:inline-block;
+    }
+    #login{
+        /* background-color:aquamarine; */
+        height:350px;
+        width:350px;
+        display:inline-block;
+        margin-left:90px;
+        vertical-align:top;
+    }
+    #login_information{
+        padding:15px;
+        height:125px;
+        width: 280px;
+        background-color:#628DA1;
+        color:white;
+        border:3px solid #456472;
+        border-radius: 5px;
+        margin-top:30px;
+        margin-left:50px;
+    }
+    .button{
+        background-color:#43A855;
+        border:1px black solid;
+        border-radius:5px;
+        margin:10px 0px 0px 125px
+
+    }
+    .form-control{
+        border-radius:10px;
+    }
+    #logout{
+        height:25px;
+        width:80px;
+        background-color:#34A85D;
+        color:white;
+        text-align:center;
+        margin-left:70px;
+        margin-top:20px;
+        border:1px white solid;
+        border-radius:15px;
+    }
+
+</style>
+<body>
+    <div id="wrapper">
+        <h1>Login and Registration</h1>
+        <h3>{% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="error">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}</h3>
+                
+        <div id="register">
+            <h2>Register here!</h2>
+            <form action="/add_user" method="POST">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">First name:</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder=required name="first_name">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Last name:</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder=required name="last_name">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Email:</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder=required name="email">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Password:</label>
+                    <input type="password" class="form-control" id="formGroupExampleInput2" placeholder=required name="pass">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Confirm Password:</label>
+                    <input type="password" class="form-control" id="formGroupExampleInput2" placeholder=required name="cpass">
+                </div>
+            <input type="submit" value="Register" class="button"> 
+            </form>
+        </div>
+        <div id="login">
+            <h2>Login Here!</h2>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Email:</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder=required name="email">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Password:</label>
+                    <input type="password" class="form-control" id="formGroupExampleInput2" placeholder=required name="pass">
+                </div>
+                <input type="submit" value="Login" class="button">
+            </form>
+            <div id="login_information">
+                <p class="info">Logged in as:{{session["useremail"]}}</p>
+                <a id="logout" type="submit" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

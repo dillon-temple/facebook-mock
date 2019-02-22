@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    h1{
+        font-size:35pt;
+        background-color:#628DA1;
+    }
+    #back{
+    height:25px;
+    width:80px;
+    background-color:#34A85D;
+    color:white;
+    text-align:center;
+    border:2px solid black;
+    border-radius:10px;
+
+}
+</style>
+<body>
+    <h1>You have successfully logged in as {{session["useremail"]}}</h1>
+    <a id="back" type="submit" href="/">Go back</a>
+</body>
+</html>
